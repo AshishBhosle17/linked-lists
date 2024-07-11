@@ -109,3 +109,17 @@ int searchInLinkedList(Node<int> *head, int k) {
     }
     return 0;
 }
+
+*****************************************************************/
+// Insertion in Head of LL
+
+Node* insertHead (Node* head, int val) {
+    Node* temp =new Node (val, head);
+    return temp;
+}
+int main() {
+    vector <int> arr ={12, 5, 8, 7}; // output: 12 5 8 7
+    Node* head= converArr2LL(arr)
+    head= insertHead (head, 100);
+    print (head); // final output: 100 12 5 8 7
+}
