@@ -38,13 +38,6 @@ void print (Node* head) {
     }
 }
 
-int main() {
-    vector<int> arr ={12, 5, 8, 7};
-    Node* head = convertArr2DLL(arr);
-    
-    print (head);
-    return 0;
-}
 
 // Delete Head of a Doubly Linked List
 
@@ -61,4 +54,30 @@ Node * deleteHead(Node *head) {
 
     delete prev;
     return head;
+}
+
+// Delete Tail of a Doubly Linked List
+
+Node* deleteTail(Node *head) {
+    if (head== NULL || head->next== NULL) {
+        return NULL;
+    }
+    Node* tail= head;
+    while (tail-> next != NULL) {
+        tail= tail-> next;
+    }
+    Node* newTail =tail->back;
+    newTail-> next= nullptr;
+    tail->back= nullptr;
+    delete tail;
+    return head;
+    
+}
+
+int main() {
+    vector<int> arr ={12, 5, 8, 7}; //output: 12 5 8
+    Node* head = convertArr2DLL(arr);
+    
+    print (head);
+    return 0;
 }
