@@ -74,8 +74,58 @@ Node* deleteTail(Node *head) {
     
 }
 
+// Delete K-th Node from Doubly Linked List
+
+Node *deleteNode(Node *head, int k){
+    // Write your code here
+    if(head == NULL){
+        return NULL;
+    }
+
+    Node* kNode = head;
+    int cnt=0;
+    while(kNode != NULL){
+
+        cnt++;
+        if(cnt == k) break;
+        kNode = kNode->next;
+    }
+    Node* back = kNode->prev;
+    Node* front= kNode->next;
+
+    if(back==NULL && front==NULL){
+        delete kNode;
+        return NULL;
+    }
+
+    else if (back!=NULL && front==NULL){
+        back->next=NULL;
+        kNode->prev=NULL;
+
+        delete kNode;
+        return head;
+    }
+
+    else if (back==NULL && front!=nullptr){
+        front->prev=NULL;
+        kNode->next=NULL;
+
+        delete kNode;
+        return front;
+    }
+    // kNode standing at between
+    back->next=front;
+    front->prev=back;
+    
+    kNode->next=NULL;
+    kNode->prev=NULL;
+
+    delete kNode;
+    return head;
+}
+
 int main() {
-    vector<int> arr ={12, 5, 8, 7}; //output: 12 5 8
+    vector<int> arr ={12, 5, 8, 7}; // for k=3; output: 12 5  7
     Node* head = convertArr2DLL(arr);
     
     print (head);
