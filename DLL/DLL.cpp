@@ -124,9 +124,30 @@ Node *deleteNode(Node *head, int k){
     return head;
 }
 
+// Delete node from Doubly Linked List (!head)
+
+void deleteNode(Node* node) {
+    //Write your code here.
+    Node* temp = node;
+    Node* prev = temp->prev;
+    Node* front = temp->next;
+
+    if (front == NULL) {
+        prev->next = nullptr;
+        temp->prev = nullptr;
+        delete (temp);
+        return;
+    }
+
+    prev-> next = front;
+    front-> prev = prev;
+    temp = temp->prev = nullptr;
+    delete (temp);
+}
+
 int main() {
     vector<int> arr ={12, 5, 8, 7}; // for k=3; output: 12 5  7
-    Node* head = convertArr2DLL(arr);
+    Node* head = convertArr2DLL(arr); // for k=4; output: 12 5 8 
     
     print (head);
     return 0;
